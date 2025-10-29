@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Project 2 Report</title>
+    <style>
+      :root {
+        --color-neutral-95: hsl(220 10% 95%);
+        --color-neutral-90: hsl(220 10% 90%);
+        --color-neutral-80: hsl(220 10% 80%);
+        --color-neutral-70: hsl(220 10% 70%);
+        --color-neutral-60: hsl(220 10% 60%);
+        --color-neutral-50: hsl(220 10% 50%);
+        --color-neutral-40: hsl(220 10% 40%);
+        --color-neutral-30: hsl(220 10% 30%);
+        --color-neutral-20: hsl(220 10% 20%);
+        --color-neutral-10: hsl(220 10% 10%);
+      }
+
+      html {
+        font: 100%/1.5 system-ui;
+        counter-reset: figure;
+        background: var(--color-neutral-95);
+        max-width: min(75vw, 80em);
+        margin: 0 auto;
+      }
+
+      /* Headings */
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        line-height: 1.1;
+        font-weight: 600;
+        text-wrap: balance;
+      }
+
+      h1,
+      h2 {
+        border-bottom: 1px solid var(--color-neutral-80);
+        padding-bottom: 0.2em;
+      }
+
+      h1 {
+        margin-block: 1em 0.5rem;
+        font-size: clamp(2.5em, 150% + 2vh + 2vw, 10vmin);
+        font-weight: 800;
+
+        small {
+          display: block;
+          width: fit-content;
+          padding: 0.2em 0.5em;
+          margin-inline: auto;
+          color: white;
+          background: var(--color-neutral-40);
+          font-size: 40%;
+          text-transform: uppercase;
+          white-space: nowrap;
+        }
+      }
+
+      h2 {
+        font-size: 180%;
+        color: var(--color-neutral-30);
+      }
+
+      h3 {
+        font-size: 130%;
+      }
+
+      /* Lists */
+
+      ul,
+      ol {
+        padding-inline-start: 2em;
+      }
+
+      li {
+        &::marker {
+          color: var(--color-neutral-40);
+        }
+
+        + li {
+          margin-top: 0.2em;
+        }
+      }
+
+      /* Sectioning elements */
+
+      header {
+        padding-block: 1em;
+        text-align: center;
+      }
+
+      main {
+        background: white;
+        color: var(--color-neutral-20);
+        border-radius: 1rem;
+        padding: 0.1rem 2rem;
+      }
+
+      /* Figures */
+
+      figure {
+        margin: 1em 0;
+        padding: 0.5rem;
+        margin-inline: -0.5em;
+        border: 1px solid var(--color-neutral-80);
+        box-shadow: 0 0.1em 0.2em var(--color-neutral-95);
+        text-align: center;
+        background: white;
+
+        > figcaption {
+          font: 500 75% var(--font-sans);
+          background: var(--color-neutral-95);
+          padding: 0.5rem;
+          margin: -0.5rem;
+          margin-top: 0.5rem;
+          counter-increment: figure;
+          text-align: left;
+
+          &::before {
+            content: 'Figure ' counter(figure) ': ';
+            font-weight: bold;
+            color: var(--color-neutral-40);
+          }
+
+          a:not(:hover, :focus, :active) {
+            color: inherit;
+            text-decoration: underline;
+            text-decoration-color: color-mix(
+              in lab,
+              currentColor,
+              transparent 70%
+            );
+          }
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+        <h1>
+            <small>Assignment 4</small>
+            Persuasive or Deceptive Visualization?
+        </h1>
+
+        <p>
+            <strong>Brighton Liu</strong> — <em>brl055@ucsd.edu</em>
+        </p>
+        <p>
+            <strong>Gabriel Maayah</strong> — <em>gmaayah@ucsd.edu</em>
+        </p>
+        <p>
+            <strong>Trent Gong</strong> — <em>c1gong@ucsd.edu</em>
+        </p>        
+    </header>
+
+    <main>
+      <h2>Proposition: Abortion rate is higher in blue states than in red states</h2>
+
+      <section>
+        <h3>FOR the Proposition</h3>
+
+        <figure>
+          <img src="uphold_kde_plot.png" alt="" />
+          <figcaption>The percent change in abortion rates from 2017-2020 by state political affiliation.</figcaption>
+        </figure>
+
+        <p>Design Decisions and Rationale:</p>
+
+        <ul>
+          <li>
+            <strong>Applied a square root transformation to the % change in abortion rate</strong>
+            <ul>
+              <li>Earnestness score: -0.5</li>
+              <li>The signed square root transformation reduces the influence of extreme values while preserving the sign of the change (increase vs. decrease). Making the distribution easier to visualize and compare the difference between parties putting emphasis on the big picture of the data.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Dashed Lines that represent the Mean of Each Party</strong>
+            <ul>
+              <li>Earnestness score: 2</li>
+              <li>Displaying the averages allows the viewer to see the substantial difference very easily on the graph. It presents the average of all blue vs red stats in a way that demonstrates the severity difference by allowing viewers to see a numerical difference where red states in fact have a negative %change in abortion rate while blue states have a much larger positive rate.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Line Density Plot</strong>
+            <ul>
+              <li>Earnestness score: -1</li>
+              <li>Using a Line Density Plot effectively communicates the distribution of values across red and blue states while smoothing out noise. We initially thought of using a histogram but the outliers of states with highest %change in abortion rate were actually red states so choosing this option helped uphold our claim better.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Party Colors</strong>
+            <ul>
+              <li>Earnestness score: 2</li>
+              <li>By choosing the corresponding parties colors ensures clear understanding of the graph so parties can be easily identified and highlight their clear differences.</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h3>AGAINST the Proposition</h3>
+
+        <figure>
+          <img src="oppose_kde_plot.png" alt="" />
+          <figcaption>The percent change in abortion clinics from 2017-2020 by state political affiliation.</figcaption>
+        </figure>
+
+        <p>Design Decisions and Rationale:</p>
+
+        <ul>
+          <li>
+            <strong>Distribution comparison:</strong>
+            <ul>
+              <li>Earnestness score: 2</li>
+              <li>Density plots show how values are spread — where most states cluster and how widely rates vary. By plotting both groups, we can compare whether abortion rate changes tend to be higher or lower in one group.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Group overlay (hue):</strong>
+            <ul>
+              <li>Earnestness score: 2</li>
+              <li>Overlaying both groups on one plot (using color hue for blue vs. red) allows direct comparison. It immediately highlights whether one group tends to have higher or lower values.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Statistical clarity via mean lines:</strong>
+            <ul>
+              <li>Earnestness score: 2</li>
+              <li>The vertical dashed lines for each group’s mean provide a quick quantitative summary of central tendency. This allows you to communicate whether the average change differs by group, even if the overall shapes overlap.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Color choice:</strong>
+            <ul>
+              <li>Earnestness score: 2</li>
+              <li>Using “dodgerblue” and “firebrick” naturally maps to U.S. political colors (blue for Democrats, red for Republicans), aiding intuitive interpretation and making the plot easier for general audiences to understand.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Column choice:</strong>
+            <ul>
+              <li>Earnestness score: -1</li>
+              <li>If we look at the number of abortion clinics, the red states actually have slightly higher expansion rates than blue states. However, the number of abortion clinics does not directly reflect the abortion rates. Even though the number of clinics and abortion rate are related, they are not equivalent and can diverge. Abortion rate depends on demand, not supply. So this is a deceptive trick and may be misleading.</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Final Reflection</h2>
+
+        <p>Coming into this project we wanted to answer the question, do democratic states have higher rates of abortion than republican states. In our goal to find this answer we had to make many design decisions about which approach and metrics would best answer this question. For instance, we debated whether to focus on the total number of abortions per state, the percent change in clinics, or the percent change in abortion rate. Finding which value to create our visualizations on was one of the most challenging parts of our process, as each option would result in visualizations telling a different story, so we had to be very precise in what we chose to uphold and oppose our proposition. Ultimately, we decided to focus on percentage change in abortion rates to uphold our proposition and also decided to focus on percent change in clinics to display our opposing graph.</p>
+
+        <p>After deciding on what parameters we wanted to work on to uphold and oppose our position we decided to go with line density charts. This form of a chart allowed us to clearly present the individual party averages and the distribution across all states. We also included specific design choices like applying a square root transformation, red and blue color schemes for political affiliation and adding dashed lines to clearly demonstrate statistical means. By adding these visual elements the viewer has a very easy time in grasping the message we are trying to relay to them. For our upholding visualization the message is Democratic states generally saw a greater increase in abortion rates, while Republican states saw a decline in abortion rate. On the other hand our visualization that opposed our proposition told a different story. When demonstrating the percent change in number of abortion clinics, Republican states actually had a larger growth in percent change in clinics making it seem as if more abortions were taking place in red states than blue which does a great job in opposing our proposition. By being selective at which data we chose to use and how we chose to present it, we were able to honestly and effectively persuade our viewers differently on a viewpoint demonstrating the responsibility and influence behind creating visuals.</p>
+
+        <p>We all learned a lot about the time and effort required to create visualizations such as these that touch upon very important and sensitive topics. With a refined understanding of ethical analysis and visualization we now understand that ethical visualization not only requires clarity and accuracy but also awareness of design choices and which data you choose to present. Things like color, scaling, graph types, and smoothing all impact how a viewer interprets a visualization so every detail matters when trying to make a point through a visualization as this is the way we actually communicate our findings to people. Acceptable forms of persuasive choices are those that can improve the understanding of a visualization without distorting the data, while misleading choices include decisions that obscure or exaggerate certain tendencies to point the viewer in arriving at certain conclusions. Coming out of this project we now understand that even subtle decisions can sway someone's perception, which strengthened our understanding of our responsibility when making visualizations to find the correct balance between persuasion alongside honesty and truth.</p>
+      </section>
+    </main>
+  </body>
+</html>
